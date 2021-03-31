@@ -2,25 +2,35 @@
   "devDependencies": {
     "@fitbit/sdk": "~4.2.0"
   },
+  "name": "skateboard",
+  "version": "0.1.0",
+  "private": true,
+  "license": "UNLICENSED",
   "fitbit": {
-    "appUUID": "a0ffc6af-9056-419c-878e-332038ca0890",
+    "appUUID": "0a69fd7d-1bbf-4eef-9a19-b873be43eee8",
     "appType": "app",
-    "appDisplayName": "KtZone",
+    "appDisplayName": "KtHR",
     "iconFile": "resources/icon.png",
-    "wipeColor": "#8bc34a",
+    "wipeColor": "#009688",
     "requestedPermissions": [
+      "access_activity",
+      "access_exercise",
       "access_heart_rate",
-      "access_user_profile",
-      "access_exercise"
+      "access_location",
+      "access_user_profile"
     ],
     "buildTargets": [
       "mira"
     ],
     "i18n": {
       "en-US": {
-        "name": "KtZone"
+        "name": "KtHR"
       }
     },
     "defaultLanguage": "en-US"
+  },
+  "scripts": {
+    "build": "fitbit-build",
+    "debug": "fitbit"
   }
 }

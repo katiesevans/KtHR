@@ -1,8 +1,5 @@
 <svg>
-  <rect id="background" width="100%" height="100%" x="0" y="0" />
-  <circle cx="50%" cy="40%" r="110" fill="black" fill-opacity="0.6" />
-  <text id="percent" x="15%" y="55%" class="large-value">52</text>
-  <image x="0%" y="83%" width="40" height="40" href="heart2.png" />
-  <text id="hrm" x="15%" y="95%" class="updated">50%</text>
-  <text id="time" x="50%" y="95%" class="updated">00:00:00</text>
+  <link rel="import" href="views/select/index.gui" />
+  <link rel="import" href="views/exercise/index.gui" />
+  <link rel="import" href="views/end/index.gui" />
 </svg>
