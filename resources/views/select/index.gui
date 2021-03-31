@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="styles.css" />
+<svg id="view-select" display="none">  
+  <text id="selecttype" x="5" y = "25">Choose exercise:</text>
+  <!--- make button to choose exercise --->
+<svg y="30" height="60">
+    <!-- toggle button OFF -->
+    <use id="btn-workout" href="#square-button-toggle" fill="fb-green">
+      <set href="#text"  attributeName="text-buffer" to="Workout" />
+    </use>
+    <!-- toggle button ON -->
+    <use id="btn-run" href="#square-button-toggle" x="50%" fill="fb-green">
+      <set href="#text"  attributeName="text-buffer" to="Run" />
+    </use>
+    <!-- toggle button OFF -->
+    <use id="btn-spin" href="#square-button-toggle" y="110%" fill="fb-green">
+      <set href="#text"  attributeName="text-buffer" to="Spin" />
+    </use>
+    <!-- toggle button ON -->
+    <use id="btn-weights" href="#square-button-toggle" y="110%" x="50%" fill="fb-green">
+      <set href="#text"  attributeName="text-buffer" to="Weights" />
+    </use>
+    <!-- toggle button OFF -->
+    <use id="btn-bike" href="#square-button-toggle" y="220%" fill="fb-green">
+      <set href="#text"  attributeName="text-buffer" to="Bike" />
+    </use>
+    <!-- toggle button ON -->
+    <use id="btn-hike" href="#square-button-toggle" y="220%" x="50%" fill="fb-green">
+      <set href="#text"  attributeName="text-buffer" to="Hike" />
+    </use>
+    <use id="btn-tennis" href="#square-button-toggle" y="330%" fill="fb-green">
+      <set href="#text"  attributeName="text-buffer" to="Tennis" />
+    </use>
+  </svg>
+
+  <!--- start button --->
+  <use id="btnStart" href="#combo-button-lower-right" fill="fb-yellow" shortcut="none">
+    <set href="combo-button-icon" attributeName="href"
+          to="images/icons/btn_combo_play_press_p.png" />
+    <set href="combo-button-icon-press" attributeName="href"
+          to="images/icons/btn_combo_play_press_p.png" />
+    <set href="combo-button-stroke" attributeName="display" to="inline" />
+  </use>
+
+</svg>
