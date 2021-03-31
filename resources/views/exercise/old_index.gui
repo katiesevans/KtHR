@@ -1,23 +1,43 @@
 <link rel="stylesheet" href="styles.css" />
 
 <svg id="view-exercise" display="none">
+  <use id="subview-gps2" href="#subview-gps" />
 
-  <use id="subview-clock2" href="#subview-clock" />
+  <use id="subview-clock" href="#subview-clock" />
 
-  <svg id="boxStats2">
+  <svg id="boxStats">
     <svg class="item">
-      <use id="subview-hrm2" href="#subview-hrm" />
+      <use id="subview-hrm" href="#subview-hrm" />
     </svg>
     <svg class="item" display="none">
-      <text id="lblActiveTime2" class="bignumber">00000</text>
+      <text id="lblActiveTime" class="bignumber">00000</text>
       <text class="label">Stopwatch</text>
     </svg>
     <svg class="item" display="none">
-      <text id="lblCalories2" class="bignumber">0</text>
+      <text id="lblCalories" class="bignumber">0</text>
       <text class="label">Calories</text>
+    </svg>
+    <svg class="item" display="none">
+      <text id="lblDistance" class="bignumber">00000</text>
+      <text id="lblDistanceUnits" class="label">Distance (km)</text>
+    </svg>
+    <svg class="item" display="none">
+      <text id="lblSpeed" class="bignumber">00000</text>
+      <text id="lblSpeedUnits" class="label">Speed (kph)</text>/text>
+    </svg>
+    <svg class="item" display="none">
+      <text id="lblSpeedAvg" class="bignumber">00000</text>
+      <text id="lblSpeedAvgUnits" class="label">Avg Speed (kph)</text>
+    </svg>
+    <svg class="item" display="none">
+      <text id="lblSpeedMax" class="bignumber">00000</text>
+      <text id="lblSpeedMaxUnits" class="label">Max Speed (kph)</text>
     </svg>
     <rect id="touch" width="100%" height="100%" opacity="0" pointer-events="all" />
   </svg>
+
+  <text id="lblStatus" />
+
   <use id="btnFinish" href="#combo-button-upper-right" display="none" fill="fb-green" shortcut="none">
     <set href="combo-button-icon" attributeName="href"
           to="images/icons/btn_combo_flag_p.png" />

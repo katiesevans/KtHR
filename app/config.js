@@ -1,10 +1,8 @@
-//import { ExerciseSelection1 } from "./index"; // add these two lines for companion choose exercise
-export const exerciseName = 'Workout';
-export const exerciseType = 'Aerobic Workout';
+export const exerciseName = 'workout';
 
 // is gps on?
 export const exerciseOptions = {
-  gps: true
+    gps: false
 };
 
 // icons for play, pause, finish

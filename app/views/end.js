@@ -20,23 +20,27 @@ export class ViewEnd extends View {
     this.clock = new Clock("#subview-clock2", "seconds");
     this.insert(this.clock);
 
-    this.lblActiveTime.text = `active time: ${utils.formatActiveTime(
+    this.lblActiveTime.text = `Active Time: ${utils.formatActiveTime(
       exercise.stats.activeTime || 0
     )}`;
 
-    this.lblHeartRateAvg.text = `heart rate avg: ${exercise.stats.heartRate
+    this.lblHeartRateAvg.text = `Avg Heart Rate: ${exercise.stats.heartRate
       .average || 0} bpm`;
-    this.lblHeartRateMax.text = `heart rate max: ${exercise.stats.heartRate
+    this.lblHeartRateMax.text = `Max Heart Rate: ${exercise.stats.heartRate
       .max || 0} bpm`;
+    
+    // gps activities
+    //if(config.exerciseName == "run" || config.exerciseName == "hike" ||  config.exerciseName == "bike") {
+      const speedAvg = utils.formatSpeed(exercise.stats.speed.average || 0);
+      this.lblSpeedAvg.text = `Avg Speed: ${speedAvg.value} ${speedAvg.units}`;
 
-    const speedAvg = utils.formatSpeed(exercise.stats.speed.average || 0);
-    this.lblSpeedAvg.text = `speed avg: ${speedAvg.value} ${speedAvg.units}`;
+      const speedMax = utils.formatSpeed(exercise.stats.speed.max || 0);
+      this.lblSpeedMax.text = `Max Speed: ${speedMax.value} ${speedMax.units}`;
 
-    const speedMax = utils.formatSpeed(exercise.stats.speed.max || 0);
-    this.lblSpeedMax.text = `speed max: ${speedMax.value} ${speedMax.units}`;
-
-    const distance = utils.formatDistance(exercise.stats.distance || 0);
-    this.lblDistance.text = `distance: ${distance.value} ${distance.units}`;
+      const distance = utils.formatDistance(exercise.stats.distance || 0);
+      this.lblDistance.text = `Distance: ${distance.value} ${distance.units}`;
+    
+   // }
   }
 
   onRender() {}

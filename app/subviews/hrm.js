@@ -34,15 +34,12 @@ export default class HRM extends View {
     this.eventHandler();
   }
 
-  //user.age;
-  //var maxhr = 220 - 27; 
-
   getBPM() {
     if (!this.bodySensor.present) {
       return "--"; // off-wrist
     }
     // change background by heart rate zone
-      var maxhr = 220 - 27; 
+      var maxhr = 220 - user.age; 
       var heartrate = this.hrmSensor.heartRate;
       if(heartrate < maxhr * 0.5) {
         background.style.fill = "#D0D0D0"; // < 50%
@@ -76,7 +73,7 @@ export default class HRM extends View {
   }
 
   onRender() {
-    this.label.text = Math.round(this.getBPM() / (220 - 27) * 100).toString() + "%" || "--";
+    this.label.text = Math.round(this.getBPM() / (220 - user.age) * 100).toString() + "%" || "--";
     sublabel.text = this.getBPM();
   }
 
