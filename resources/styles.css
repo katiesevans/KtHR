@@ -1,0 +1,17 @@
+svg {
+  viewport-fill: fb-cyan;
+}
+
+.large-value {
+  font-family: Seville-Book;
+  font-size: 120;
+  fill: white;
+  text-length: 50;
+}
+
+.updated {
+  font-family: Seville-Book;
+  font-size: 50;
+  fill: black;
+  text-length: 50;
+}

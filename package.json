@@ -1,0 +1,26 @@
+{
+  "devDependencies": {
+    "@fitbit/sdk": "~4.2.0"
+  },
+  "fitbit": {
+    "appUUID": "a0ffc6af-9056-419c-878e-332038ca0890",
+    "appType": "app",
+    "appDisplayName": "KtZone",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#8bc34a",
+    "requestedPermissions": [
+      "access_heart_rate",
+      "access_user_profile",
+      "access_exercise"
+    ],
+    "buildTargets": [
+      "mira"
+    ],
+    "i18n": {
+      "en-US": {
+        "name": "KtZone"
+      }
+    },
+    "defaultLanguage": "en-US"
+  }
+}
