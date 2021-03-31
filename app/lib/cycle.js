@@ -1,5 +1,7 @@
 import { show, hide } from "./utils";
+import * as config from "../config";
 
+// this page is what controls the app cycling through the different stats during exercise
 export default class Cycle {
   index = 0;
 
@@ -7,7 +9,14 @@ export default class Cycle {
     if (!container) throw new Error("Cycle parent element is undefined");
 
     this.container = container;
-    this.items = this.container.getElementsByClassName("item");
+
+    // remove items for non gps activities
+    if(config.exerciseName == "run") {
+      this.items = this.container.getElementsByTypeName("GPS");
+    } else {
+      this.items = this.container.getElementsByClassName("item");
+    }
+    
     this.touch = this.container.getElementById("touch");
     this.addEvents();
   }

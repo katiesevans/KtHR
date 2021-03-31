@@ -2,8 +2,8 @@
   "devDependencies": {
     "@fitbit/sdk": "~4.2.0"
   },
-  "name": "skateboard",
-  "version": "0.1.0",
+  "name": "KtHR",
+  "version": "0.2.0",
   "private": true,
   "license": "UNLICENSED",
   "fitbit": {

@@ -46,13 +46,7 @@ export class ViewSelect extends View {
       config.exerciseName = "tennis"
     }
 
-    // if GPS
-    //if (config.exerciseName == "run" || config.exerciseName == "hike" || config.exerciseName == "bike") {
- //       Application.switchTo("ViewExerciseGPS");
- //   } else {
- //       Application.switchTo("ViewExercise");
- //   }
-    Application.switchTo("ViewExerciseGPS");
+    Application.switchTo("ViewExercise");
   }
     
 
