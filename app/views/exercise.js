@@ -137,16 +137,6 @@ export class ViewExercise extends View {
   }
 
   onMount() {
-    // show or hide gps icon
-    if(config.exerciseName == "run" ||
-      config.exerciseName == "bike" ||
-      config.exerciseName == "hike") {
-      gps_icon.style.display = "inline";
-      this.lblStatus.text = "connecting";
-    } else {
-      gps_icon.style.display = "none";
-      this.lblStatus.text = "";
-    }
     
     utils.hide(this.btnFinish);
     utils.hide(this.btnToggle);
@@ -155,9 +145,20 @@ export class ViewExercise extends View {
     this.clock = new Clock("#subview-clock", "seconds", this.handleRefresh);
     this.insert(this.clock);
     
-    // this needs to be fixed in non-gps -- set to good always if gps is off, work around?
-    this.gps = new GPS("#subview-gps2", this.handleLocationSuccess);
-    this.insert(this.gps);
+    // show or hide gps icon
+    if(config.exerciseName == "run" ||
+      config.exerciseName == "bike" ||
+      config.exerciseName == "hike") {
+      gps_icon.style.display = "inline";
+      this.lblStatus.text = "connecting";
+      this.gps = new GPS("#subview-gps2", this.handleLocationSuccess);
+      this.insert(this.gps);
+    } else {
+      gps_icon.style.display = "none";
+      this.lblStatus.text = "";
+      utils.show(this.btnToggle);
+      exercise.start(config.exerciseName, config.exerciseOptions);
+    }
 
     this.hrm = new HRM("#subview-hrm");
     this.insert(this.hrm);
