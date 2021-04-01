@@ -5,6 +5,7 @@
   <text id="lblTitle">Nice Work!</text>
 
   <text id="lblActiveTime" class="label" />
+  <text id="lblZoneMins" class="label" />
   <text id="lblHeartRateAvg" class="label" />
   <text id="lblHeartRateMax" class="label" />
   <text id="lblSpeedAvg" class="label" />

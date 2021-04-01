@@ -2,7 +2,7 @@ export const exerciseName = 'workout';
 
 // is gps on?
 export const exerciseOptions = {
-    gps: false
+  gps: false
 };
 
 // icons for play, pause, finish

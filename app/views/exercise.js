@@ -38,6 +38,7 @@ export class ViewExercise extends View {
   lblDistanceUnits = $("#lblDistanceUnits");
   lblActiveTime = $("#lblActiveTime");
   lblCalories = $("#lblCalories");
+  lblZoneMins = $("#lblZoneMins");
 
   handlePopupNo = () => {
     this.remove(this.popup);
@@ -59,7 +60,7 @@ export class ViewExercise extends View {
 
   handlePause = () => {
     exercise.pause();
-    this.lblStatus.text = "paused";
+    this.lblStatus.text = ""; // dont like this, covers up my heart
     this.setComboIcon(this.btnToggle, config.icons.play);
     utils.show(this.btnFinish);
   };
@@ -98,6 +99,11 @@ export class ViewExercise extends View {
 
   handleLocationSuccess = () => {
     utils.show(this.btnToggle);
+    
+    // set gps to true for run, bike, or hike. Else default is false
+    if(config.exerciseName == "run" || config.exerciseName == "bike" || config.exerciseName == "hike") {
+      config.exerciseOptions.gps = true
+    }
     exercise.start(config.exerciseName, config.exerciseOptions);
     this.lblStatus.text = "";
     this.gps.callback = undefined;
@@ -136,23 +142,25 @@ export class ViewExercise extends View {
       config.exerciseName == "bike" ||
       config.exerciseName == "hike") {
       gps_icon.style.display = "inline";
+      this.lblStatus.text = "connecting";
     } else {
       gps_icon.style.display = "none";
+      this.lblStatus.text = "";
     }
     
     utils.hide(this.btnFinish);
     utils.hide(this.btnToggle);
     this.setComboIcon(this.btnToggle, config.icons.pause);
-    this.lblStatus.text = "connecting";
 
     this.clock = new Clock("#subview-clock", "seconds", this.handleRefresh);
     this.insert(this.clock);
+    
+    // this needs to be fixed in non-gps -- set to good always if gps is off, work around?
+    this.gps = new GPS("#subview-gps2", this.handleLocationSuccess);
+    this.insert(this.gps);
 
     this.hrm = new HRM("#subview-hrm");
     this.insert(this.hrm);
-
-    this.gps = new GPS("#subview-gps2", this.handleLocationSuccess);
-    this.insert(this.gps);
 
     this.cycle = new Cycle(this.elBoxStats);
 
@@ -183,6 +191,9 @@ export class ViewExercise extends View {
       this.lblActiveTime.text = utils.formatActiveTime(exercise.stats.activeTime);
 
       this.lblCalories.text = utils.formatCalories(exercise.stats.calories);
+      
+      // add active zone minutes
+      this.lblZoneMins.text = exercise.stats.activeZoneMinutes.toString();
     }
   }
 

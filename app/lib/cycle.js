@@ -11,7 +11,7 @@ export default class Cycle {
     this.container = container;
 
     // remove items for non gps activities
-    if(config.exerciseName == "run") {
+    if(config.exerciseName == "run" || config.exerciseName == "bike" || config.exerciseName == "hike") {
       this.items = this.container.getElementsByTypeName("GPS");
     } else {
       this.items = this.container.getElementsByClassName("item");

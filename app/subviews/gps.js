@@ -3,6 +3,7 @@
 */
 import { me } from "appbit";
 import { geolocation } from "geolocation";
+import * as config from "../config";
 
 import { View, $at } from "../lib/view";
 
@@ -20,7 +21,13 @@ export default class GPS extends View {
     if (me.permissions.granted("access_location")) {
       this.watch();
     } else {
-      this.gpsBad();
+      // gps only can go bad if run, bike, hike
+      if(config.exerciseName == "run" || config.exerciseName == "bike" || config.exerciseName == "hike") {
+          this.gpsBad();
+      } else {
+        //this.watch()
+        this.gpsGood();
+      }
     }
   }
 

@@ -14,6 +14,10 @@
       <text class="label">Stopwatch</text>
     </svg>
     <svg class="item" type="GPS" display="none">
+      <text id="lblZoneMins" class="bignumber">0</text>
+      <text class="label">Active Zone Minutes</text>
+    </svg>
+    <svg class="item" type="GPS" display="none">
       <text id="lblCalories" class="bignumber">0</text>
       <text class="label">Calories</text>
     </svg>

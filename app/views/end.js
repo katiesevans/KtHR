@@ -3,6 +3,7 @@ import exercise from "exercise";
 import * as utils from "../lib/utils";
 import { View, $at } from "../lib/view";
 import Clock from "../subviews/clock";
+import * as config from "../config";
 
 const $ = $at("#view-end");
 
@@ -15,6 +16,7 @@ export class ViewEnd extends View {
   lblSpeedAvg = $("#lblSpeedAvg");
   lblSpeedMax = $("#lblSpeedMax");
   lblDistance = $("#lblDistance");
+  lblZoneMins = $("#lblZoneMins");
 
   onMount() {
     this.clock = new Clock("#subview-clock2", "seconds");
@@ -23,6 +25,8 @@ export class ViewEnd extends View {
     this.lblActiveTime.text = `Active Time: ${utils.formatActiveTime(
       exercise.stats.activeTime || 0
     )}`;
+    
+    this.lblZoneMins.text = `Active Zone Minutes: ${exercise.stats.activeZoneMinutes || 0}`;
 
     this.lblHeartRateAvg.text = `Avg Heart Rate: ${exercise.stats.heartRate
       .average || 0} bpm`;
@@ -30,7 +34,7 @@ export class ViewEnd extends View {
       .max || 0} bpm`;
     
     // gps activities
-    //if(config.exerciseName == "run" || config.exerciseName == "hike" ||  config.exerciseName == "bike") {
+    if(config.exerciseName == "run" || config.exerciseName == "hike" ||  config.exerciseName == "bike") {
       const speedAvg = utils.formatSpeed(exercise.stats.speed.average || 0);
       this.lblSpeedAvg.text = `Avg Speed: ${speedAvg.value} ${speedAvg.units}`;
 
@@ -40,7 +44,11 @@ export class ViewEnd extends View {
       const distance = utils.formatDistance(exercise.stats.distance || 0);
       this.lblDistance.text = `Distance: ${distance.value} ${distance.units}`;
     
-   // }
+    } else {
+      this.lblSpeedAvg.txt = ""
+      this.lblSpeedMax.txt = ""
+      this.lblDistance.txt = ""
+    }
   }
 
   onRender() {}
