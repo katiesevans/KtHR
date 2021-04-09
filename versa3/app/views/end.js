@@ -16,7 +16,6 @@ export class ViewEnd extends View {
   lblSpeedAvg = $("#lblSpeedAvg");
   lblSpeedMax = $("#lblSpeedMax");
   lblDistance = $("#lblDistance");
-  lblZoneMins = $("#lblZoneMins");
 
   onMount() {
     this.clock = new Clock("#subview-clock2", "seconds");
@@ -26,7 +25,6 @@ export class ViewEnd extends View {
       exercise.stats.activeTime || 0
     )}`;
     
-    this.lblZoneMins.text = `Active Zone Minutes: ${exercise.stats.activeZoneMinutes || 0}`;
 
     this.lblHeartRateAvg.text = `Avg Heart Rate: ${exercise.stats.heartRate
       .average || 0} bpm`;
@@ -34,7 +32,7 @@ export class ViewEnd extends View {
       .max || 0} bpm`;
     
     // gps activities
-    if(config.exerciseName == "run" || config.exerciseName == "hike" ||  config.exerciseName == "bike") {
+    if(config.exerciseName == "run" || config.exerciseName == "hike") {
       const speedAvg = utils.formatSpeed(exercise.stats.speed.average || 0);
       this.lblSpeedAvg.text = `Avg Speed: ${speedAvg.value} ${speedAvg.units}`;
 
@@ -55,3 +53,4 @@ export class ViewEnd extends View {
 
   onUnmount() {}
 }
+

@@ -8,16 +8,29 @@ import * as utils from "../lib/utils";
 import Clock from "../subviews/clock";
 import GPS from "../subviews/gps";
 import HRM from "../subviews/hrm";
-import Popup from "../subviews/popup";
+//import Popup from "../subviews/popup";
 
-const $ = $at("#view-exercisegps");
+const $ = $at("#view-exercise");
 
-export class ViewExerciseGPS extends View {
+// show or hide gps icon depending on the type of activity
+let gps_icon = document.getElementById("subview-gps2");
+let dist_page = document.getElementById("distancePage");
+let speed_page = document.getElementById("speedPage");
+let speed_page2 = document.getElementById("speedPage2");
+let speed_page3 = document.getElementById("speedPage3");
+
+// play pause button
+const btnToggle = document.getElementById("btnToggle");
+const btnFinish = document.getElementById("btnFinish");
+const lblStatus = document.getElementById("lblStatus");
+
+export class ViewExercise extends View {
   el = $();
 
-  btnFinish = $("#btnFinish");
-  btnToggle = $("#btnToggle");
+  //btnFinish = $("#btnFinish");
+  //btnToggle = $("#btnToggle");
   lblStatus = $("#lblStatus");
+
 
   elBoxStats = $("#boxStats");
   lblSpeed = $("#lblSpeed");
@@ -30,12 +43,18 @@ export class ViewExerciseGPS extends View {
   lblDistanceUnits = $("#lblDistanceUnits");
   lblActiveTime = $("#lblActiveTime");
   lblCalories = $("#lblCalories");
+  lblZoneMins = $("#lblZoneMins");
+ 
 
   handlePopupNo = () => {
+            console.log("handlepopupno")
+
     this.remove(this.popup);
   };
 
   handlePopupYes = () => {
+        console.log("handlepopupyes")
+
     this.remove(this.popup);
     exercise.stop();
     Application.switchTo("ViewEnd");
@@ -51,24 +70,32 @@ export class ViewExerciseGPS extends View {
 
   handlePause = () => {
     exercise.pause();
-    this.lblStatus.text = "paused";
-    this.setComboIcon(this.btnToggle, config.icons.play);
-    utils.show(this.btnFinish);
+    lblStatus.text = ""; // dont like this, covers up my heart
+    //this.setComboIcon(this.btnToggle, config.icons.play);
+    //btnToggle.fill = "fb-pink"
+    btnToggle.image = "images/icons/play.png"
+    btnToggle.style.fill = "fb-green";
+    utils.show(btnFinish);
   };
 
   handleResume = () => {
     exercise.resume();
-    this.lblStatus.text = "";
-    this.setComboIcon(this.btnToggle, config.icons.pause);
-    utils.hide(this.btnFinish);
+    lblStatus.text = "";
+    //this.setComboIcon(this.btnToggle, config.icons.pause);
+    //btnToggle.fill = "fb-green"
+    btnToggle.image = "images/icons/pause.png"
+    btnToggle.style.fill = "fb-yellow";
+    utils.hide(btnFinish);
   };
 
-  setComboIcon(combo, icon) {
-    combo.getElementById("combo-button-icon").href = icon;
-    combo.getElementById("combo-button-icon-press").href = icon;
-  }
+  //setComboIcon(combo, icon) {
+    //combo.getElementById("combo-button-icon").href = icon;
+    //combo.getElementById("combo-button-icon-press").href = icon;
+  //}
 
   handleFinish = () => {
+    // not working right now
+    /*
     let popupSettings = {
       title: "End activity?",
       message: `Are you sure you want to finish this ${
@@ -81,6 +108,9 @@ export class ViewExerciseGPS extends View {
     };
     this.popup = new Popup("#popup", popupSettings);
     this.insert(this.popup);
+    */
+    exercise.stop();
+    Application.switchTo("ViewEnd");
   };
 
   handleCancel = () => {
@@ -89,9 +119,14 @@ export class ViewExerciseGPS extends View {
   }
 
   handleLocationSuccess = () => {
-    utils.show(this.btnToggle);
+    utils.show(btnToggle);
+    
+    // set gps to true for run, bike, or hike. Else default is false
+    if(config.exerciseName == "run" || config.exerciseName == "hike") {
+      config.exerciseOptions.gps = true
+    }
     exercise.start(config.exerciseName, config.exerciseOptions);
-    this.lblStatus.text = "";
+    lblStatus.text = "";
     this.gps.callback = undefined;
   };
 
@@ -100,6 +135,7 @@ export class ViewExerciseGPS extends View {
   }
 
   handleButton = (evt) => {
+    console.log("handlebutton")
     evt.preventDefault();
     switch (evt.key) {
       case "back":
@@ -123,28 +159,40 @@ export class ViewExerciseGPS extends View {
   }
 
   onMount() {
-    utils.hide(this.btnFinish);
-    utils.hide(this.btnToggle);
-    this.setComboIcon(this.btnToggle, config.icons.pause);
-    this.lblStatus.text = "connecting";
+    
+    utils.hide(btnFinish);
+    utils.show(btnToggle);
+    //this.setComboIcon(this.btnToggle, config.icons.pause);
 
     this.clock = new Clock("#subview-clock", "seconds", this.handleRefresh);
     this.insert(this.clock);
+    
+    // show or hide gps icon
+    if(config.exerciseName == "run" ||
+      config.exerciseName == "hike") {
+        gps_icon.style.display = "inline";
+        lblStatus.text = "connecting";
+        this.gps = new GPS("#subview-gps2", this.handleLocationSuccess);
+        this.insert(this.gps);
+    } else {
+        gps_icon.style.display = "none";
+        lblStatus.text = "";
+        utils.show(btnToggle);
+        exercise.start(config.exerciseName, config.exerciseOptions);
+    }
 
     this.hrm = new HRM("#subview-hrm");
     this.insert(this.hrm);
 
-    this.gps = new GPS("#subview-gps2", this.handleLocationSuccess);
-    this.insert(this.gps);
-
     this.cycle = new Cycle(this.elBoxStats);
 
-    this.btnToggle.addEventListener("click", this.handleToggle);
-    this.btnFinish.addEventListener("click", this.handleFinish);
+    btnToggle.addEventListener("click", this.handleToggle);
+    btnFinish.addEventListener("click", this.handleFinish);
     document.addEventListener("keypress", this.handleButton);
   }
 
   onRender() {
+ 
     if (exercise && exercise.stats) {
 
       const speed = utils.formatSpeed(exercise.stats.speed.current);
@@ -166,14 +214,18 @@ export class ViewExerciseGPS extends View {
       this.lblActiveTime.text = utils.formatActiveTime(exercise.stats.activeTime);
 
       this.lblCalories.text = utils.formatCalories(exercise.stats.calories);
+      
+      // add active zone minutes
+      //this.lblZoneMins.text = exercise.stats.activeZoneMinutes.toString();
     }
+ 
   }
 
   onUnmount() {
     this.cycle.removeEvents();
 
-    this.btnToggle.removeEventListener("click", this.handleToggle);
-    this.btnFinish.removeEventListener("click", this.handleFinish);
+    btnToggle.removeEventListener("click", this.handleToggle);
+    btnFinish.removeEventListener("click", this.handleFinish);
     document.removeEventListener("keypress", this.handleButton);
   }
 }

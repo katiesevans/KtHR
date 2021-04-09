@@ -1,4 +1,4 @@
-export const exerciseName = 'workout';
+export const exerciseName = 'run';
 
 // is gps on?
 export const exerciseOptions = {

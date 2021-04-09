@@ -12,24 +12,33 @@ import Popup from "../subviews/popup";
 
 const $ = $at("#view-exercise");
 
+// show or hide gps icon depending on the type of activity
+let gps_icon = document.getElementById("subview-gps2");
+let dist_page = document.getElementById("distancePage");
+let speed_page = document.getElementById("speedPage");
+let speed_page2 = document.getElementById("speedPage2");
+let speed_page3 = document.getElementById("speedPage3");
+
+
 export class ViewExercise extends View {
   el = $();
 
-  btnFinish2 = $("#btnFinish");
-  btnToggle2 = $("#btnToggle");
-  lblStatus2 = $("#lblStatus");
+  btnFinish = $("#btnFinish");
+  btnToggle = $("#btnToggle");
+  lblStatus = $("#lblStatus");
 
-  elBoxStats2 = $("#boxStats");
-  //lblSpeed = $("#lblSpeed");
-  //lblSpeedUnits = $("#lblSpeedUnits");
-  //lblSpeedAvg = $("#lblSpeedAvg");
-  //lblSpeedAvgUnits = $("#lblSpeedAvgUnits");
-  //lblSpeedMax = $("#lblSpeedMax");
-  //lblSpeedMaxUnits = $("#lblSpeedMaxUnits");
-  //lblDistance = $("#lblDistance");
-  //lblDistanceUnits = $("#lblDistanceUnits");
-  lblActiveTime2 = $("#lblActiveTime");
-  lblCalories2 = $("#lblCalories");
+  elBoxStats = $("#boxStats");
+  lblSpeed = $("#lblSpeed");
+  lblSpeedUnits = $("#lblSpeedUnits");
+  lblSpeedAvg = $("#lblSpeedAvg");
+  lblSpeedAvgUnits = $("#lblSpeedAvgUnits");
+  lblSpeedMax = $("#lblSpeedMax");
+  lblSpeedMaxUnits = $("#lblSpeedMaxUnits");
+  lblDistance = $("#lblDistance");
+  lblDistanceUnits = $("#lblDistanceUnits");
+  lblActiveTime = $("#lblActiveTime");
+  lblCalories = $("#lblCalories");
+  lblZoneMins = $("#lblZoneMins");
 
   handlePopupNo = () => {
     this.remove(this.popup);
@@ -51,7 +60,7 @@ export class ViewExercise extends View {
 
   handlePause = () => {
     exercise.pause();
-    this.lblStatus.text = "paused";
+    this.lblStatus.text = ""; // dont like this, covers up my heart
     this.setComboIcon(this.btnToggle, config.icons.play);
     utils.show(this.btnFinish);
   };
@@ -79,7 +88,7 @@ export class ViewExercise extends View {
       btnRightLabel: "End",
       btnRightCallback: this.handlePopupYes
     };
-    this.popup2 = new Popup("#popup", popupSettings);
+    this.popup = new Popup("#popup", popupSettings);
     this.insert(this.popup);
   };
 
@@ -89,9 +98,14 @@ export class ViewExercise extends View {
   }
 
   handleLocationSuccess = () => {
-    utils.show(this.btnToggle2);
+    utils.show(this.btnToggle);
+    
+    // set gps to true for run, bike, or hike. Else default is false
+    if(config.exerciseName == "run" || config.exerciseName == "bike" || config.exerciseName == "hike") {
+      config.exerciseOptions.gps = true
+    }
     exercise.start(config.exerciseName, config.exerciseOptions);
-    this.lblStatus2.text = "";
+    this.lblStatus.text = "";
     this.gps.callback = undefined;
   };
 
@@ -123,57 +137,72 @@ export class ViewExercise extends View {
   }
 
   onMount() {
-    utils.hide(this.btnFinish2);
-    utils.hide(this.btnToggle2);
-    this.setComboIcon(this.btnToggle2, config.icons.pause);
-    //this.lblStatus.text = "connecting";
+    
+    utils.hide(this.btnFinish);
+    utils.hide(this.btnToggle);
+    this.setComboIcon(this.btnToggle, config.icons.pause);
 
-    this.clock2 = new Clock("#subview-clock", "seconds", this.handleRefresh);
-    this.insert(this.clock2);
+    this.clock = new Clock("#subview-clock", "seconds", this.handleRefresh);
+    this.insert(this.clock);
+    
+    // show or hide gps icon
+    if(config.exerciseName == "run" ||
+      config.exerciseName == "bike" ||
+      config.exerciseName == "hike") {
+      gps_icon.style.display = "inline";
+      this.lblStatus.text = "connecting";
+      this.gps = new GPS("#subview-gps2", this.handleLocationSuccess);
+      this.insert(this.gps);
+    } else {
+      gps_icon.style.display = "none";
+      this.lblStatus.text = "";
+      utils.show(this.btnToggle);
+      exercise.start(config.exerciseName, config.exerciseOptions);
+    }
 
-    this.hrm2 = new HRM("#subview-hrm");
-    this.insert(this.hrm2);
+    this.hrm = new HRM("#subview-hrm");
+    this.insert(this.hrm);
 
-    this.gps2 = new GPS("#subview-gps2", this.handleLocationSuccess);
-    this.insert(this.gps2);
+    this.cycle = new Cycle(this.elBoxStats);
 
-    this.cycle2 = new Cycle(this.elBoxStats2);
-
-    this.btnToggle.addEventListener("click", this.handleToggle2);
-    this.btnFinish.addEventListener("click", this.handleFinish2);
-    document.addEventListener("keypress", this.handleButton2);
+    this.btnToggle.addEventListener("click", this.handleToggle);
+    this.btnFinish.addEventListener("click", this.handleFinish);
+    document.addEventListener("keypress", this.handleButton);
   }
 
   onRender() {
     if (exercise && exercise.stats) {
 
-      //const speed = utils.formatSpeed(exercise.stats.speed.current);
-      //this.lblSpeed.text = speed.value;
-      //this.lblSpeedUnits.text = `Speed ${speed.units}`;
+      const speed = utils.formatSpeed(exercise.stats.speed.current);
+      this.lblSpeed.text = speed.value;
+      this.lblSpeedUnits.text = `Speed ${speed.units}`;
 
-      //const speedAvg = utils.formatSpeed(exercise.stats.speed.average);
-      //this.lblSpeedAvg.text = speedAvg.value;
-      //this.lblSpeedAvgUnits.text = `Avg Speed ${speedAvg.units}`;
+      const speedAvg = utils.formatSpeed(exercise.stats.speed.average);
+      this.lblSpeedAvg.text = speedAvg.value;
+      this.lblSpeedAvgUnits.text = `Avg Speed ${speedAvg.units}`;
 
-      //const speedMax = utils.formatSpeed(exercise.stats.speed.max);
-      //this.lblSpeedMax.text = speedMax.value;
-      //this.lblSpeedMaxUnits.text = `Max Speed ${speedMax.units}`;
+      const speedMax = utils.formatSpeed(exercise.stats.speed.max);
+      this.lblSpeedMax.text = speedMax.value;
+      this.lblSpeedMaxUnits.text = `Max Speed ${speedMax.units}`;
 
-      //const distance = utils.formatDistance(exercise.stats.distance);
-      //this.lblDistance.text = distance.value;
-      //this.lblDistanceUnits.text = `Distance ${distance.units}`;
+      const distance = utils.formatDistance(exercise.stats.distance);
+      this.lblDistance.text = distance.value;
+      this.lblDistanceUnits.text = `Distance ${distance.units}`;
 
-      this.lblActiveTime2.text = utils.formatActiveTime(exercise.stats.activeTime);
+      this.lblActiveTime.text = utils.formatActiveTime(exercise.stats.activeTime);
 
-      this.lblCalories2.text = utils.formatCalories(exercise.stats.calories);
+      this.lblCalories.text = utils.formatCalories(exercise.stats.calories);
+      
+      // add active zone minutes
+      this.lblZoneMins.text = exercise.stats.activeZoneMinutes.toString();
     }
   }
 
   onUnmount() {
     this.cycle.removeEvents();
 
-    this.btnToggle2.removeEventListener("click", this.handleToggle);
-    this.btnFinish2.removeEventListener("click", this.handleFinish);
+    this.btnToggle.removeEventListener("click", this.handleToggle);
+    this.btnFinish.removeEventListener("click", this.handleFinish);
     document.removeEventListener("keypress", this.handleButton);
   }
 }

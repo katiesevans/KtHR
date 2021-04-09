@@ -1,0 +1,44 @@
+<svg>
+  <defs>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="import" href="/mnt/sysassets/system_widget.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/baseview_widget.defs" />
+    <!-- Additional Imports for icon buttons -->
+    <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/icon_button.defs" />
+    
+    <symbol id="subview-popup">
+
+      <!-- Black background -->
+      <rect class="full-size" fill="fb-black" />
+
+      <!-- Title and text -->
+      <svg class="horizontal-pad">
+        <text class="h1 center-text application-fill" x="50%">Heading1</text>
+      </svg>
+
+      <!-- Left button -->
+      <use id="btnLeft" href="#text-button" class="text-button bottom left secondary application-fill" />
+
+      <!-- Right button -->
+      <use id="btnRight" href="#text-button" class="text-button bottom right application-fill" />
+
+    </symbol>
+    
+    <symbol id="subview-clock">
+      <text id="lblClock" />
+    </symbol>
+    
+    <symbol id="subview-gps">
+      <image id="icon-gps" />
+    </symbol>
+    
+    <symbol id="subview-hrm">
+      <circle id="background" cx="50%" cy="50%" r="110" fill="black" fill-opacity="0.8" />
+      <text id="lblHrm" x="18%" y="63%"class="bignumber">--</text>
+      <image x="10%" y="83%" width="40" height="40" href="heart2.png" />
+      <text id="sub" x="25%" y="92%" class="label">--</text>
+    </symbol>
+
+  </defs>
+</svg>

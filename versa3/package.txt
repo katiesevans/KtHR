@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@fitbit/sdk": "~4.2.0"
+    "@fitbit/sdk": "~5.0.0"
   },
   "name": "KtHR",
   "version": "0.2.0",
@@ -11,7 +11,7 @@
     "appType": "app",
     "appDisplayName": "KtHR",
     "iconFile": "resources/icon.png",
-    "wipeColor": "#009688",
+    "wipeColor": "#2196f3",
     "requestedPermissions": [
       "access_activity",
       "access_exercise",
@@ -20,7 +20,7 @@
       "access_user_profile"
     ],
     "buildTargets": [
-      "mira"
+      "atlas"
     ],
     "i18n": {
       "en-US": {

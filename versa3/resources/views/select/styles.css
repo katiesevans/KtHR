@@ -1,0 +1,39 @@
+#lblTitle {
+  x: 8;
+  y: 100%-18;
+}
+
+.application-fill           { fill: fb-blue; }
+.foreground-fill            { fill: fb-white; }
+.background-fill            { fill: fb-black; }
+
+#btnStart #text {
+  text-buffer: "Start!";
+}
+
+
+#btn-workout #image {
+  href: "images/icons/activity.png";
+}
+
+#btn-treadmill #image {
+  href: "images/icons/treadmill.png";
+}
+
+#btn-hike #image {
+  href: "images/icons/hike.png";
+}
+
+#btn-spin #image {
+  href: "images/icons/spin.png";
+}
+
+#btn-weights #image {
+  href: "images/icons/strength.png";
+}
+
+#btn-run #image {
+  href: "images/icons/run.png";
+}
+
+
