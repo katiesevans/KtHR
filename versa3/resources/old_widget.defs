@@ -1,0 +1,55 @@
+<svg>
+  <defs>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="import" href="/mnt/sysassets/system_widget.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/baseview_widget.defs" />
+    <!-- Additional Imports for icon buttons -->
+    <link rel="import" href="/mnt/sysassets/widgets/text_button.defs" />
+    <link rel="import" href="/mnt/sysassets/widgets/icon_button.defs" />
+
+    <symbol id="subview-popup">
+
+      <!-- Black background -->
+      <rect class="full-size" fill="fb-black" />
+
+      <!-- Title and text -->
+      <use href="#h1" class="dialog-mixed-text" fill="fb-white">
+        <set href="#top-padding" attributeName="display" to="none" />
+        <!-- <set href="#header/text" attributeName="text-buffer" to="Ready, Set, Go" /> -->
+        <set href="#header/text" attributeName="text-length" to="50" />
+        <set href="#header/text" attributeName="fill" to="fb-magenta"/>
+        <!-- <set href="#copy/text" attributeName="text-buffer" to="Are you ready to begin working?" /> -->
+        <set href="#copy/text" attributeName="text-length" to="80" />
+        <set href="#bottom-padding" attributeName="display" to="none" />
+      </use>
+
+      <!-- Left button -->
+      <use id="btnLeft" class="dialog-half-button-left" href="#square-button-neutral">
+        <set href="#text" attributeName="text-buffer" to="XXXXXX" />
+        <set href="#text" attributeName="text-anchor" to="middle" />
+      </use>
+
+      <!-- Right button -->
+      <use id="btnRight" class="dialog-half-button-right" href="#square-button-negative">
+        <set href="#text" attributeName="text-buffer" to="XXXXXX" />
+        <set href="#text" attributeName="text-anchor" to="middle" />
+      </use>
+    </symbol>
+
+    <symbol id="subview-clock">
+      <text id="lblClock" />
+    </symbol>
+
+    <symbol id="subview-gps">
+      <image id="icon-gps" />
+    </symbol>
+
+    <symbol id="subview-hrm">
+      <circle id="background" cx="50%" cy="50%" r="110" fill="black" fill-opacity="0.8" />
+      <text id="lblHrm" x="18%" y="63%"class="bignumber">--</text>
+      <image x="0%" y="83%" width="40" height="40" href="heart2.png" />
+      <text id="sub" x="15%" y="95%" class="label">--</text>
+    </symbol>
+
+  </defs>
+</svg>

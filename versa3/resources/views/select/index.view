@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="styles.css" />
+<svg id="view-select" display="none">  
+  <text id="selecttype" x="50" y = "50">Choose exercise:</text>
+  <!--- make button to choose exercise --->
+<svg x="20" y="60" height="70%">
+    <!-- toggle button OFF -->
+    <use id="btn-workout" class="icon-button large-button" href="#icon-button" fill="fb-blue"/>
+   <!-- toggle button ON -->
+    <use id="btn-run" class="icon-button large-button" href="#icon-button" x="30%" fill="fb-pink"/>
+    <!-- toggle button OFF -->
+    <use id="btn-spin" class="icon-button large-button" href="#icon-button" x="60%" fill="fb-red"/>
+    <!-- toggle button ON -->
+    <use id="btn-weights" class="icon-button large-button" href="#icon-button" y="45%" fill="fb-purple"/>
+    <!-- toggle button OFF -->
+    <use id="btn-treadmill" class="icon-button large-button" href="#icon-button" y="45%" x="30%" fill="fb-yellow"/>
+    <!-- toggle button ON -->
+    <use id="btn-hike" class="icon-button large-button" href="#icon-button" y="45%" x="60%" fill="fb-slate"/>
+  </svg>
+
+  <!--- start button --->
+<use id="btnStart" href="#text-button" class="text-button bottom" fill = "fb-green" y="80%" />
+
+
+</svg>

@@ -1,0 +1,25 @@
+#lblStatus {
+  x: 8;
+  y: 100%-18;
+  text-length: 20;
+}
+
+#boxStats {
+  x: 0;
+  y: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.application-fill           { fill: fb-blue; }
+.foreground-fill            { fill: fb-white; }
+.background-fill            { fill: fb-white; }
+
+
+#btnFinish #image{
+  href: "images/icons/finish.png";
+}
+
+#btnToggle #image {
+  href: "images/icons/pause.png";
+}

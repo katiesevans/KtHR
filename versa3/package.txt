@@ -1,0 +1,36 @@
+{
+  "devDependencies": {
+    "@fitbit/sdk": "~5.0.0"
+  },
+  "name": "KtHR",
+  "version": "0.2.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "fitbit": {
+    "appUUID": "0a69fd7d-1bbf-4eef-9a19-b873be43eee8",
+    "appType": "app",
+    "appDisplayName": "KtHR",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#2196f3",
+    "requestedPermissions": [
+      "access_activity",
+      "access_exercise",
+      "access_heart_rate",
+      "access_location",
+      "access_user_profile"
+    ],
+    "buildTargets": [
+      "atlas"
+    ],
+    "i18n": {
+      "en-US": {
+        "name": "KtHR"
+      }
+    },
+    "defaultLanguage": "en-US"
+  },
+  "scripts": {
+    "build": "fitbit-build",
+    "debug": "fitbit"
+  }
+}

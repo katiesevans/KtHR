@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="styles.css" />
+<svg id="view-select" display="none">  
+  <text id="selecttype" x="40" y = "60">Choose exercise:</text>
+  <!--- make button to choose exercise --->
+<svg x="40" y="80" height="70%">
+    
+  </svg>
+
+  <!--- start button --->
+<use id="btnStart" href="#text-button" class="text-button bottom right application-fill" />
+</svg>
+
+

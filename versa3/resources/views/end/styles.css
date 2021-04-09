@@ -1,0 +1,12 @@
+#lblTitle {
+  x: 50;
+  y: 65;
+  fill: fb-magenta
+}
+
+#view-end .label {
+  font-size: 23;
+  x: 50;
+  y: $+4;
+  fill: #ffffff;
+}

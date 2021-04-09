@@ -1,0 +1,5 @@
+<svg>
+  <link rel="import" href="views/select/index.view" />
+  <link rel="import" href="views/exercise/index.view" />
+  <link rel="import" href="views/end/index.view" />
+</svg>
