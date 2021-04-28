@@ -39,7 +39,7 @@ export default class HRM extends View {
       return "--"; // off-wrist
     }
     // change background by heart rate zone
-      var maxhr = 220 - user.age; 
+      var maxhr = 211 - (0.64 * user.age); 
       var heartrate = this.hrmSensor.heartRate;
       if(heartrate < maxhr * 0.5) {
         background.style.fill = "#D0D0D0"; // < 50%
