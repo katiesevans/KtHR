@@ -39,9 +39,9 @@ export class ViewSelect extends View {
     } else if(weights_button.value == 1) {
       config.exerciseName = "weights"
     } else if(bike_button.value == 1) {
-      config.exerciseName = "bike"
+      config.exerciseName = "cycling"
     } else if(hike_button.value == 1) {
-      config.exerciseName = "hike"
+      config.exerciseName = "hiking"
     } else if(tennis_button.value == 1) {
       config.exerciseName = "tennis"
     }

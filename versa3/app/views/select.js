@@ -56,7 +56,7 @@ export class ViewSelect extends View {
     })
     
     spin_button.addEventListener("click", (evt) => {
-      config.exerciseName = "spin";
+      config.exerciseName = "spinning";
       spin_button.style.fill = "grey";
     })
     
@@ -66,7 +66,7 @@ export class ViewSelect extends View {
     })
     
     hike_button.addEventListener("click", (evt) => {
-      config.exerciseName = "hike";
+      config.exerciseName = "hiking";
       hike_button.style.fill = "grey";
     })
 

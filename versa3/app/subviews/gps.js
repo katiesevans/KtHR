@@ -22,7 +22,7 @@ export default class GPS extends View {
       this.watch();
     } else {
       // gps only can go bad if run, bike, hike
-      if(config.exerciseName == "run" || config.exerciseName == "bike" || config.exerciseName == "hike") {
+      if(config.exerciseName == "run" || config.exerciseName == "cycling" || config.exerciseName == "hiking") {
           this.gpsBad();
       } else {
         //this.watch()

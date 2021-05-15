@@ -32,7 +32,7 @@ export class ViewEnd extends View {
       .max || 0} bpm`;
     
     // gps activities
-    if(config.exerciseName == "run" || config.exerciseName == "hike") {
+    if(config.exerciseName == "run" || config.exerciseName == "hiking") {
       const speedAvg = utils.formatSpeed(exercise.stats.speed.average || 0);
       this.lblSpeedAvg.text = `Avg Speed: ${speedAvg.value} ${speedAvg.units}`;
 

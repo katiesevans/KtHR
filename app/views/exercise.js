@@ -101,7 +101,7 @@ export class ViewExercise extends View {
     utils.show(this.btnToggle);
     
     // set gps to true for run, bike, or hike. Else default is false
-    if(config.exerciseName == "run" || config.exerciseName == "bike" || config.exerciseName == "hike") {
+    if(config.exerciseName == "run" || config.exerciseName == "cycling" || config.exerciseName == "hiking") {
       config.exerciseOptions.gps = true
     }
     exercise.start(config.exerciseName, config.exerciseOptions);
@@ -147,8 +147,8 @@ export class ViewExercise extends View {
     
     // show or hide gps icon
     if(config.exerciseName == "run" ||
-      config.exerciseName == "bike" ||
-      config.exerciseName == "hike") {
+      config.exerciseName == "cycling" ||
+      config.exerciseName == "hiking") {
       gps_icon.style.display = "inline";
       this.lblStatus.text = "connecting";
       this.gps = new GPS("#subview-gps2", this.handleLocationSuccess);
