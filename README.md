@@ -1,11 +1,12 @@
 # KtHR
-Exercise monitor for fitbit sdk that incorporates heart rate zones from myzone app
 
-![](resources/icon.png){width=30%}
+![](resources/icon.png) 
+
+## Exercise monitor for fitbit sdk that incorporates heart rate zones from myzone app
 
 This Fitbit application was created to help track heart rate zones during exercise. You can select from 6 different exercise types to begin and your steps, mileage, heart rate, calories, and time will be recorded in the fitbit app upon completion of the exercise. 
 
-![](resources/example.png){width=30%}
+![](resources/example.png)
 
 ### Installing:
 
